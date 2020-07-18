@@ -1,9 +1,11 @@
-package spm
+package main
 
 import (
 	"fmt"
+	"github.com/pete0emerson/spm"
 )
 
-func Hello() {
-	fmt.Println("Hello")
+func main() {
+	fmt.Prinln("Hello there")
+	spm.Hello()
 }
