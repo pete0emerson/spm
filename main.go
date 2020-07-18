@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/pete0emerson/spm"
+	"github.com/pete0emerson/spm/pkg/spm"
 )
 
 func main() {
-	fmt.Prinln("Hello there")
+	fmt.Println("Hello there")
 	spm.Hello()
 }
