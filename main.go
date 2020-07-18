@@ -1,4 +1,4 @@
-package main
+package spm
 
 import (
 	"fmt"
