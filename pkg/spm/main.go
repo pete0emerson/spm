@@ -59,17 +59,30 @@ func Remove(path string, autoConfirm bool) error {
 }
 
 func Install(URI string, destinationPath string, autoConfirm bool) error {
-	_, err := git.PlainClone(destinationPath, false, &git.CloneOptions{
-		URL:      URI,
-		Depth:    1,
-		Progress: os.Stdout,
-	})
-	if err != nil {
-		return err
+	install := false
+	if autoConfirm {
+		install = true
+	} else {
+		question := fmt.Sprintf("Install %s to %s", URI, destinationPath)
+		text := prompt(question, []string{"yes", "no"}, "no")
+		if text == "yes" {
+			install = true
+		}
+
 	}
-	err = os.RemoveAll(destinationPath + "/.git")
-	if err != nil {
-		return err
+	if install {
+		_, err := git.PlainClone(destinationPath, false, &git.CloneOptions{
+			URL:      URI,
+			Depth:    1,
+			Progress: os.Stdout,
+		})
+		if err != nil {
+			return err
+		}
+		err = os.RemoveAll(destinationPath + "/.git")
+		if err != nil {
+			return err
+		}
+		return nil
 	}
-	return nil
 }
