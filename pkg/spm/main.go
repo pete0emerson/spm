@@ -83,6 +83,6 @@ func Install(URI string, destinationPath string, autoConfirm bool) error {
 		if err != nil {
 			return err
 		}
-		return nil
 	}
+	return nil
 }
